@@ -9,15 +9,19 @@
  * @return false - failed in finding a solution
  */
 bool Sudoku::solveSudoku(int row, int column) {
+	// Finished
 	if (row == 9) {
 		return true;
 	}
+	// Next row
 	else if (column == 9) {
 		return solveSudoku(row + 1, 0);
 	}
+	// Skip fixed digit
 	else if (this->sudoku[row][column] != 0) {
 		return solveSudoku(row, column + 1);
 	}
+	// Trial and error
 	else {
 		for (int digit = 1; digit <= 9; ++digit) {
 			if (isValidDigit(digit, row, column) == true) {
@@ -118,14 +122,17 @@ bool Sudoku::isNotInBox(int digit, int row, int column) {
  * @return true - solution is correct
  * @return false - solution is incorrect
  */
-bool Sudoku::isValidSolution() {
+bool Sudoku::checkSolution() {
 	bool isValid = true;
 
 	std::cout << std::endl;
 	for (int row = 0; row < 9; ++row) {
 		for (int column = 0; column < 9; ++column) {
 			if (isValidDigit(this->sudoku[row][column], row, column) == false) {
-				std::cout << RED << this->sudoku[row][column] << " " <<ESCAPE;
+				if (this->sudoku[row][column] != 0) {
+					std::cout << RED;
+				}
+				std::cout << this->sudoku[row][column] << " " <<ESCAPE;
 				isValid = false;
 			}
 			else {
@@ -136,27 +143,4 @@ bool Sudoku::isValidSolution() {
 		printReasonableRowLayout(row + 1);
 	}
 	return isValid;
-}
-
-/**
- * @brief Ensures a reasonable layout (as transparant as possible)
- * 
- * @param indexColumn column between 1 and 9 to determine current box
- */
-void Sudoku::printReasonableColumnLayout(int indexColumn) {
-	if (indexColumn % 3 == 0) {
-		std::cout << "	";
-	}
-}
-
-/**
- * @brief Ensures a reasonable layout (as transparant as possible)
- * 
- * @param indexRow row between 1 and 9 to determine current box
- */
-void Sudoku::printReasonableRowLayout(int indexRow) {
-	if (indexRow % 3 == 0) {
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;
 }

@@ -8,8 +8,10 @@ NAME        := solve
 
 # Source files 
 SRCS        := sudoku.cpp \
+			   generateSudoku.cpp \
+			   checkSudoku.cpp \
 			   solveSudoku.cpp \
-			   createSudoku.cpp \
+			   printSudoku.cpp \
 		   	   main.cpp 
 
 # Object files

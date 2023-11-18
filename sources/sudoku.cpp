@@ -1,7 +1,7 @@
 #include "sudoku.hpp"
 
 /**
- * @brief Construct a new Sudoku:: Sudoku object
+ * @brief Constructs a new Sudoku:: Sudoku object
  * 
  */
 Sudoku::Sudoku() {
@@ -12,24 +12,22 @@ Sudoku::Sudoku() {
  * 
  */
 void Sudoku::playSudoku() {
-	if (createSudoku() == true
+	if (generateSudoku() == true
 		&& solveSudoku(0, 0) == true
-		&& isValidSolution() == true) {
-		std::cout << "╔════════════════════╗\n";
-		std::cout << "║" << GREEN << " Success: Solution  " << ESCAPE << "║\n";
-		std::cout << "╚════════════════════╝\n";
-		//printSudoku();
+		&& checkSolution() == true) {
+		printMessage(GREEN, " Success: Solution  ");
 	}
 	else {
-		std::cout << "╔════════════════════╗\n";
-		std::cout << "║" << RED << "Failure: No Solution" << ESCAPE << "║\n";
-		std::cout << "╚════════════════════╝\n";
+		printMessage(RED, "Failure: No Solution");
 	}
-	deleteSudoku();
+
+	if (this->sudoku != nullptr) {
+		deleteSudoku();
+	}
 }
 
 /**
- * @brief Destroy the Sudoku:: Sudoku object
+ * @brief Destroies the Sudoku:: Sudoku object
  * 
  */
 Sudoku::~Sudoku() {

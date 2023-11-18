@@ -8,6 +8,6 @@ int main() {
 
 	delete sudoku;
 	sudoku = nullptr;
-	
+
 	return 0;
 }
