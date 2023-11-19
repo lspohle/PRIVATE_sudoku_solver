@@ -1,13 +1,13 @@
-#include "sudoku.hpp"
+#include "gameSudoku/gameSudoku.hpp"
 
 int main() {
-	Sudoku* sudoku = nullptr;
-	sudoku = new Sudoku();
+	GameSudoku* game = nullptr;
+	game = new GameSudoku();
 
-	sudoku->playSudoku();
+	game->playSudoku();
 
-	delete sudoku;
-	sudoku = nullptr;
+	delete game;
+	game = nullptr;
 
 	return 0;
 }

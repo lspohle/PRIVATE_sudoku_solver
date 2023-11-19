@@ -1,35 +1,35 @@
-#include "sudoku.hpp"
+#include "gameSudoku.hpp"
 
 /**
- * @brief Solves the Sudoku - BACKTRACKING using RECURSION
+ * @brief Solves the sudoku - BACKTRACKING using RECURSION
  * 
  * @param row current position to fill
  * @param column current position to fill
  * @return true - successful in finding a solution
  * @return false - failed in finding a solution
  */
-bool Sudoku::solveSudoku(int row, int column) {
+bool GameSudoku::solveSudoku(int** sudoku, int row, int column) {
 	// Finished
 	if (row == 9) {
 		return true;
 	}
 	// Next row
 	else if (column == 9) {
-		return solveSudoku(row + 1, 0);
+		return solveSudoku(sudoku, row + 1, 0);
 	}
 	// Skip fixed digit
-	else if (this->sudoku[row][column] != 0) {
-		return solveSudoku(row, column + 1);
+	else if (sudoku[row][column] != 0) {
+		return solveSudoku(sudoku, row, column + 1);
 	}
 	// Trial and error
 	else {
 		for (int digit = 1; digit <= 9; ++digit) {
-			if (isValidDigit(digit, row, column) == true) {
-				this->sudoku[row][column] = digit;
-				if (solveSudoku(row, column + 1) == true) {
+			if (isValidDigit(sudoku, digit, row, column) == true) {
+				sudoku[row][column] = digit;
+				if (solveSudoku(sudoku, row, column + 1) == true) {
 					return true;
 				}
-				this->sudoku[row][column] = 0;
+				sudoku[row][column] = 0;
 			}
 		}
 		return false;
@@ -45,10 +45,10 @@ bool Sudoku::solveSudoku(int row, int column) {
  * @return true - digit is unique in current position
  * @return false - digit is not unique in current position
  */
-bool Sudoku::isValidDigit(int digit, int row, int column) {
-	if (isNotInRow(digit, row, column) == false
-		|| isNotInColumn(digit, row, column) == false
-		|| isNotInBox(digit, row, column) == false) {
+bool GameSudoku::isValidDigit(int** sudoku, int digit, int row, int column) {
+	if (isNotInRow(sudoku, digit, row, column) == false
+		|| isNotInColumn(sudoku, digit, row, column) == false
+		|| isNotInBox(sudoku, digit, row, column) == false) {
 		return false;
 	}
 	return true;
@@ -63,9 +63,9 @@ bool Sudoku::isValidDigit(int digit, int row, int column) {
  * @return true - digit is unique in current row
  * @return false - digit is already represented in current row
  */
-bool Sudoku::isNotInRow(int digit, int row, int column) {
+bool GameSudoku::isNotInRow(int** sudoku, int digit, int row, int column) {
 	for (int c = 0; c < 9; ++c) {
-		if (digit == this->sudoku[row][c] && c != column) {
+		if (digit == sudoku[row][c] && c != column) {
 			return false;
 		}
 	}
@@ -81,9 +81,9 @@ bool Sudoku::isNotInRow(int digit, int row, int column) {
  * @return true - digit is unique in current column
  * @return false - digit is already represented in current column
  */
-bool Sudoku::isNotInColumn(int digit, int row, int column) {
+bool GameSudoku::isNotInColumn(int** sudoku, int digit, int row, int column) {
 	for (int r = 0; r < 9; ++r) {
-		if (digit == this->sudoku[r][column] && r != row) {
+		if (digit == sudoku[r][column] && r != row) {
 			return false;
 		}
 	}
@@ -99,13 +99,13 @@ bool Sudoku::isNotInColumn(int digit, int row, int column) {
  * @return true - digit is unique in current box
  * @return false - digit is already represented in current box
  */
-bool Sudoku::isNotInBox(int digit, int row, int column) {
+bool GameSudoku::isNotInBox(int** sudoku, int digit, int row, int column) {
 	int r = row - row % 3;
 	int c = column - column % 3;
 
 	for (int i = 0; i < 3; ++i) {
 		for (int j = 0; j < 3; j++) {
-			if (digit == this->sudoku[r][c] && r != row && c != column) {
+			if (digit == sudoku[r][c] && r != row && c != column) {
 				return false;
 			}
 			c++;
@@ -122,13 +122,13 @@ bool Sudoku::isNotInBox(int digit, int row, int column) {
  * @return true - solution is correct
  * @return false - solution is incorrect
  */
-bool Sudoku::checkSolution() {
+bool GameSudoku::checkSolution() {
 	bool isValid = true;
 
 	std::cout << std::endl;
 	for (int row = 0; row < 9; ++row) {
 		for (int column = 0; column < 9; ++column) {
-			if (isValidDigit(this->sudoku[row][column], row, column) == false) {
+			if (isValidDigit(this->sudoku, this->sudoku[row][column], row, column) == false) {
 				if (this->sudoku[row][column] != 0) {
 					std::cout << RED;
 				}

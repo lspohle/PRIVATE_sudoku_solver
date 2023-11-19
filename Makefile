@@ -1,4 +1,4 @@
-VPATH       := sources:sources
+VPATH       := sources:sources/randomSudoku:sources/selectedSudoku:sources/gameSudoku
 
 # Temporary directory containing the object files
 BUILDDIR	:= build
@@ -7,11 +7,11 @@ BUILDDIR	:= build
 NAME        := solve
 
 # Source files 
-SRCS        := sudoku.cpp \
-			   generateSudoku.cpp \
-			   checkSudoku.cpp \
+SRCS        := gameSudoku.cpp \
 			   solveSudoku.cpp \
-			   printSudoku.cpp \
+			   utils.cpp \
+			   randomSudoku.cpp \
+			   selectedSudoku.cpp \
 		   	   main.cpp 
 
 # Object files
