@@ -9,7 +9,7 @@ private:
 public:
 	RandomSudoku();
 	~RandomSudoku();
-	int** generateSudoku();
+	int** randomizeSudoku();
 	bool checkSudoku();
 private:
 	void initializeRandomSudoku();

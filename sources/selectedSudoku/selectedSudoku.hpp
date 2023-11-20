@@ -10,7 +10,7 @@ private:
 public:
 	SelectedSudoku();
 	~SelectedSudoku();
-    int** readSudoku();
+    int** selectSudoku();
     bool checkSudoku();
 private:
 	bool openSudoku();

@@ -33,14 +33,14 @@ bool GameSudoku::chooseSudoku() {
 
 	if (sudokuChoice.compare("1") == 0) {
 		SelectedSudoku chosenSudoku;
-		this->sudoku = chosenSudoku.readSudoku();
+		this->sudoku = chosenSudoku.selectSudoku();
 		if (this->sudoku != nullptr) {
 			return chosenSudoku.checkSudoku();
 		}
 	}
 	else if (sudokuChoice.compare("2") == 0) {
 		RandomSudoku chosenSudoku;
-		this->sudoku = chosenSudoku.generateSudoku();
+		this->sudoku = chosenSudoku.randomizeSudoku();
 		if (this->sudoku != nullptr) {
 			return chosenSudoku.checkSudoku();
 		}

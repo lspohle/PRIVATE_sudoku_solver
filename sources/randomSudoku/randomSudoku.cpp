@@ -7,7 +7,7 @@
 RandomSudoku::RandomSudoku() {
 }
 
-int** RandomSudoku::generateSudoku() {
+int** RandomSudoku::randomizeSudoku() {
 	this->randomSudoku = allocateSudoku();
 	initializeRandomSudoku();
 

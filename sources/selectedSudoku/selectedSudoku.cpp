@@ -15,7 +15,7 @@ void print(int** array) {
 	}
 }
 
-int** SelectedSudoku::readSudoku() {
+int** SelectedSudoku::selectSudoku() {
     if (openSudoku() == false) {
 		return nullptr;
 	}
