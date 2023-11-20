@@ -29,16 +29,16 @@ void GameSudoku::playSudoku() {
 }
 
 bool GameSudoku::chooseSudoku() {
-	char sudokuChoice = printOptionsSudoku();
+	std::string sudokuChoice = printOptionsSudoku();
 
-	if (sudokuChoice == '1') {
+	if (sudokuChoice.compare("1") == 0) {
 		SelectedSudoku chosenSudoku;
 		this->sudoku = chosenSudoku.readSudoku();
 		if (this->sudoku != nullptr) {
 			return chosenSudoku.checkSudoku();
 		}
 	}
-	else if (sudokuChoice == '2') {
+	else if (sudokuChoice.compare("2") == 0) {
 		RandomSudoku chosenSudoku;
 		this->sudoku = chosenSudoku.generateSudoku();
 		if (this->sudoku != nullptr) {

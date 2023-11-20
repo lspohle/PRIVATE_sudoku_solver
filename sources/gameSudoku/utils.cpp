@@ -26,13 +26,14 @@ void GameSudoku::deleteSudoku(int** sudoku) {
  * 
  * @return char - choice of sudoku
  */
-char GameSudoku::printOptionsSudoku() {
+std::string GameSudoku::printOptionsSudoku() {
 	std::cout << GREEN << "Please choose from the following:\n" << ESCAPE;
 	std::cout << "1) Manual sudoku\n2) Random sudoku\n\n";
 	std::cout << GREEN << "Enter 1 or 2: " ESCAPE; 
 
-	char sudokuChoice;
-	std::cin >> sudokuChoice;
+	std::string sudokuChoice;
+	std::getline(std::cin, sudokuChoice);
+	//std::cin >> sudokuChoice;
 	return sudokuChoice;
 }
 

@@ -24,7 +24,7 @@ public:
 	// utils.cpp
 	int** allocateSudoku();
 	void deleteSudoku(int** sudoku);
-	char printOptionsSudoku();
+	std::string printOptionsSudoku();
 	void printMessage(std::string color, std::string msg);
 	void printReasonableColumnLayout(int indexColumn);
 	void printReasonableRowLayout(int indexRow);
